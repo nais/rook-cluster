@@ -1,0 +1,4 @@
+dependencies:
+- name: rook
+  version: "0.0.1"
+  repository: https://nais.github.io/charts/
