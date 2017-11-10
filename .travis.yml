@@ -7,7 +7,7 @@ before_script:
 script:
 #- /bin/bash bump.sh $GH_TOKEN
 #- git tag -a $(/bin/cat ./version) -m "auto-tag from Makefile [skip ci]" && git push --tags https://$GH_TOKEN@github.com/nais/naisd
-- docker run -v /tmp/charts:/charts -v $(pwd)/:/rook-cluster -w /charts navikt/helm package /rook-cluster /charts
+- docker run -v /tmp/charts:/charts -v $(pwd)/:/rook-cluster -w /charts navikt/helm package /rook-cluster --destination /charts
 - docker run -v /tmp/charts:/charts -w /charts navikt/helm repo index --url https://nais.github.io/charts .
 - cd /tmp/charts
 - echo "<html><body><pre>$(cat index.yaml)</pre></body></html>" > index.html
