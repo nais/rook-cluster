@@ -59,6 +59,12 @@ spec:
     location:
     storeConfig:
       storeType: bluestore
+      {{- if .Values.cluster.databaseSizeMb }}
+      databaseSizeMB: {{ .Values.cluster.databaseSizeMb }}
+      {{- end}}
+      {{- if .Values.cluster.journalSizeMb }}
+      journalSizeMB: {{ .Values.cluster.journalSizeMb }}
+      {{- end}}
 #      databaseSizeMB: 1024 # this value can be removed for environments with normal sized disks (100 GB or larger)
 #      journalSizeMB: 1024  # this value can be removed for environments with normal sized disks (20 GB or larger)
 # Individual nodes and their config can be specified as well, but 'useAllNodes' above must be set to false. Then, only the named
