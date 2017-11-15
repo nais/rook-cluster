@@ -29,7 +29,7 @@ spec:
 #      podAffinity:
 #      podAntiAffinity:
       tolerations:
-        key: (( .Values.cluster.toleration }}
+      - key: {{ .Values.cluster.toleration }}
         operator: Exists
 #    api:
 #      nodeAffinity:
