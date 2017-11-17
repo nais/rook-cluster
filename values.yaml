@@ -5,8 +5,6 @@ name: "rook"
 namespace: "rook"
 
 cluster:
-  name: "rook"
-  namespace: "rook"
   dataDirHostPath: "/var/lib/kubernetes/rook"
   monCount: "3"
   nodeAffinity: "nais.io/storage-node"
