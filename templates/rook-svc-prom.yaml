@@ -4,14 +4,13 @@ metadata:
   labels:
     app: rook-api
     rook_cluster: {{ .Values.name }}
-  name: rook-api
+  name: rook-api-prom
   namespace: {{ .Values.namespace }}
   annotations:
     prometheus.io/path: /metrics
     prometheus.io/port: http
     prometheus.io/scrape: "true"
 spec:
-  clusterIP: 10.254.205.232
   ports:
   - name: metrics
     port: 8124
