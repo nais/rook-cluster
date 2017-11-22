@@ -8,7 +8,7 @@ metadata:
   namespace: {{ .Values.namespace }}
   annotations:
     prometheus.io/path: /metrics
-    prometheus.io/port: http
+    prometheus.io/port: metrics
     prometheus.io/scrape: "true"
 spec:
   ports:
