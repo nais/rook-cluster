@@ -1,4 +1,4 @@
 apiVersion: v1
 description: A Helm chart for setting up a opionated rook Ceph pool and Kubernetes storage class.
 name: rook-cluster
-version: 0.4.0
+version: 0.5.0
