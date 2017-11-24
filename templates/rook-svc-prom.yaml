@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: rook-api
-    rook_cluster: {{ .Values.name }}
+    rook_cluster: {{ .Values.namespace }}
   name: rook-api-prom
   namespace: {{ .Values.namespace }}
   annotations:
@@ -18,4 +18,4 @@ spec:
     targetPort: 8124
   selector:
     app: rook-api
-    rook_cluster: {{ .Values.name }}
+    rook_cluster: {{ .Values.namespace }}
