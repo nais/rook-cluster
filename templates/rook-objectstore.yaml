@@ -2,6 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: s3
+  namespace: {{ .Values.namespace }}
 spec:
   rules:
   - host: s3.{{ .Values.domain }}
@@ -9,7 +10,7 @@ spec:
       paths:
       - backend:
           serviceName: s3
-          servicePort: 8080
+          servicePort: 80
         path: /
 ---
 
@@ -21,10 +22,11 @@ metadata:
     rook_cluster: {{ .Values.name }}
     rook_object_store: {{ .Values.objectstore.name }}
   name: s3
+  namespace: {{ .Values.namespace }} 
 spec:
   ports:
   - name: http
-    port: 8080
+    port: 80
     protocol: TCP
     targetPort: 8080
   selector:
@@ -37,6 +39,7 @@ apiVersion: rook.io/v1alpha1
 kind: ObjectStore
 metadata:
   name: {{ .Values.objectstore.name }}
+  namespace: {{ .Values.namespace }}
 spec:
   metadataPool:
     replicated:
