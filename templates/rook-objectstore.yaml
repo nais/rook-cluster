@@ -42,14 +42,14 @@ metadata:
 spec:
   metadataPool:
     replicated:
-      size: {{ Values.objectstore.replicatedSize }}
+      size: {{ .Values.objectstore.replicatedSize }}
   dataPool:
     replicated:
-      size: {{ Values.objectstore.replicatedSize }}
+      size: {{ .Values.objectstore.replicatedSize }}
   gateway:
     type: s3
     port: 8080
-    instances: {{ Values.objectstore.gatewayInstances }}
+    instances: {{ .Values.objectstore.gatewayInstances }}
     allNodes: false
     placement:
       all:
