@@ -1,0 +1,64 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: s3
+spec:
+  rules:
+  - host: s3.{{ .Values.domain }}
+    http:
+      paths:
+      - backend:
+          serviceName: s3
+          servicePort: 8080
+        path: /
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: rook-ceph-rgw
+    rook_cluster: {{ .Values.name }}
+    rook_object_store: {{ .Values.objectstore.name }}
+  name: s3
+  spec:
+    ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      app: rook-ceph-rgw
+      rook_cluster: {{ .Values.name }}
+      rook_object_store: {{ .Values.objectstore.name }}
+    sessionAffinity: None
+    type: ClusterIP
+
+---    
+apiVersion: rook.io/v1alpha1
+kind: ObjectStore
+metadata:
+  name: {{ .Values.objectstore.name }}
+spec:
+  metadataPool:
+    replicated:
+      size: {{ Values.objectstore.replicatedSize }}
+  dataPool:
+    replicated:
+      size: {{ Values.objectstore.replicatedSize }}
+  gateway:
+    type: s3
+    port: 8080
+    instances: {{ Values.objectstore.gatewayInstances }}
+    allNodes: false
+    placement:
+      all:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: {{ .Values.objectstore.nodeAffinity }}
+                operator: Exists
+        tolerations:
+        - key: {{ .Values.objectstore..toleration }}
+          operator: Exists

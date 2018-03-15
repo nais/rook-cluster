@@ -4,6 +4,7 @@
 name: "rook"
 namespace: "rook"
 versionTag: "v0.6.2"
+domain: "nais.devillo.no"
 
 cluster:
   dataDirHostPath: "/var/lib/kubernetes/rook"
@@ -15,4 +16,11 @@ cluster:
 pool:
   name: replicapool
   replicatedSize: "3"
+
+objectstore:
+  name: objectstore
+  replicatedSize: "2"
+  gatewayInstances: "2"
+  nodeAffinity: "nais.io/storage-node"
+  toleration: "nais.io/storage-node"
 
