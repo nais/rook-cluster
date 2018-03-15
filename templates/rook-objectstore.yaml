@@ -21,18 +21,16 @@ metadata:
     rook_cluster: {{ .Values.name }}
     rook_object_store: {{ .Values.objectstore.name }}
   name: s3
-  spec:
-    ports:
-    - name: http
-      port: 8080
-      protocol: TCP
-      targetPort: 8080
-    selector:
-      app: rook-ceph-rgw
-      rook_cluster: {{ .Values.name }}
-      rook_object_store: {{ .Values.objectstore.name }}
-    sessionAffinity: None
-    type: ClusterIP
+spec:
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: rook-ceph-rgw
+    rook_cluster: {{ .Values.name }}
+    rook_object_store: {{ .Values.objectstore.name }}
 
 ---    
 apiVersion: rook.io/v1alpha1
