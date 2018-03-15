@@ -60,5 +60,5 @@ spec:
               - key: {{ .Values.objectstore.nodeAffinity }}
                 operator: Exists
         tolerations:
-        - key: {{ .Values.objectstore..toleration }}
+        - key: {{ .Values.objectstore.toleration }}
           operator: Exists
