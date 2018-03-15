@@ -9,7 +9,7 @@ metadata:
   name:  {{ .Values.name }}
   namespace: {{ .Values.namespace }}
 spec:
-  versionTag: master
+  versionTag: {{ .Values.versionTag }}
   dataDirHostPath: {{ .Values.cluster.dataDirHostPath }}
   # toggle to use hostNetwork
   hostNetwork: false

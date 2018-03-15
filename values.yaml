@@ -3,6 +3,7 @@
 # Declare variables to be passed into your templates.
 name: "rook"
 namespace: "rook"
+versionTag: "v0.6.2"
 
 cluster:
   dataDirHostPath: "/var/lib/kubernetes/rook"
