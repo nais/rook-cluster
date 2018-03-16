@@ -19,7 +19,7 @@ kind: Service
 metadata:
   labels:
     app: rook-ceph-rgw
-    rook_cluster: {{ .Values.name }}
+    rook_cluster: {{ .Values.namespacee }}
     rook_object_store: {{ .Values.objectstore.name }}
   name: s3
   namespace: {{ .Values.namespace }} 
@@ -31,7 +31,7 @@ spec:
     targetPort: 8080
   selector:
     app: rook-ceph-rgw
-    rook_cluster: {{ .Values.name }}
+    rook_cluster: {{ .Values.namespace }}
     rook_object_store: {{ .Values.objectstore.name }}
 
 ---    
