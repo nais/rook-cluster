@@ -1,17 +1,17 @@
 apiVersion: v1
 kind: Namespace
-annotations:
-    "helm.sh/resource-policy": keep
 metadata:
   name: {{ .Values.namespace }}
+  annotations:
+    "helm.sh/resource-policy": keep
 ---
 apiVersion: rook.io/v1alpha1
 kind: Cluster
-annotations:
-    "helm.sh/resource-policy": keep
 metadata:
   name:  {{ .Values.name }}
   namespace: {{ .Values.namespace }}
+  annotations:
+    "helm.sh/resource-policy": keep
 spec:
   versionTag: {{ .Values.versionTag }}
   dataDirHostPath: {{ .Values.cluster.dataDirHostPath }}

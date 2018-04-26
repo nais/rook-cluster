@@ -1,10 +1,10 @@
 apiVersion: rook.io/v1alpha1
 kind: Pool
-annotations:
-    "helm.sh/resource-policy": keep
 metadata:
   name: {{ .Values.pool.name }}
   namespace: {{ .Values.namespace }}
+  annotations:
+    "helm.sh/resource-policy": keep
 spec:
   # The failure domain will spread the replicas of the data across different failure zones
   failureDomain: osd

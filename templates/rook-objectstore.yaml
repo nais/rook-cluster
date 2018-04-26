@@ -1,10 +1,10 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
-annotations:
-    "helm.sh/resource-policy": keep
 metadata:
   name: s3
   namespace: {{ .Values.namespace }}
+  annotations:
+    "helm.sh/resource-policy": keep
 spec:
   rules:
   - host: s3.{{ .Values.domain }}
@@ -18,8 +18,6 @@ spec:
 
 apiVersion: v1
 kind: Service
-annotations:
-    "helm.sh/resource-policy": keep
 metadata:
   labels:
     app: rook-ceph-rgw
@@ -27,6 +25,8 @@ metadata:
     rook_object_store: {{ .Values.objectstore.name }}
   name: s3
   namespace: {{ .Values.namespace }} 
+  annotations:
+    "helm.sh/resource-policy": keep
 spec:
   ports:
   - name: http
@@ -41,9 +41,9 @@ spec:
 ---    
 apiVersion: rook.io/v1alpha1
 kind: ObjectStore
-annotations:
-    "helm.sh/resource-policy": keep
 metadata:
+  annotations:
+    "helm.sh/resource-policy": keep
   name: {{ .Values.objectstore.name }}
   namespace: {{ .Values.namespace }}
 spec:
