@@ -1,5 +1,7 @@
 apiVersion: rook.io/v1alpha1
 kind: Pool
+annotations:
+    "helm.sh/resource-policy": keep
 metadata:
   name: {{ .Values.pool.name }}
   namespace: {{ .Values.namespace }}

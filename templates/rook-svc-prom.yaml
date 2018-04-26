@@ -1,5 +1,7 @@
 apiVersion: v1
 kind: Service
+annotations:
+    "helm.sh/resource-policy": keep
 metadata:
   labels:
     app: rook-api

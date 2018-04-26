@@ -1,5 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
+annotations:
+    "helm.sh/resource-policy": keep
 metadata:
   name: s3
   namespace: {{ .Values.namespace }}
@@ -16,6 +18,8 @@ spec:
 
 apiVersion: v1
 kind: Service
+annotations:
+    "helm.sh/resource-policy": keep
 metadata:
   labels:
     app: rook-ceph-rgw
@@ -37,6 +41,8 @@ spec:
 ---    
 apiVersion: rook.io/v1alpha1
 kind: ObjectStore
+annotations:
+    "helm.sh/resource-policy": keep
 metadata:
   name: {{ .Values.objectstore.name }}
   namespace: {{ .Values.namespace }}
